@@ -11,7 +11,7 @@ app.use(bodyParser.urlencoded({
 })); // support encoded bodies
 
 
-const client = redis.createClient();
+const client = redis.createClient({"host":"redis"});
 //Init logic just in case : 
 
 client.get("currentId", function (err, reply) {

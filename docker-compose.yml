@@ -17,3 +17,15 @@ services:
     - redis:redis
     ports:
     - "8081:8081"
+
+  api:
+    build: ./api/
+    ports:
+    - "3000:3000"
+    command: npm run start
+    volumes:
+    - ./api/:/usr/src/app
+    - /usr/src/app/node_modules
+    links:
+    - redis
+
