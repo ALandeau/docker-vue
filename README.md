@@ -12,6 +12,8 @@ Nous partons du principe que vous avez déjà `docker` et `docker-compose` insta
 Pour commencer à développer sur l’application, ouvrez votre terminal et exécutez la commande suivante : 
 `docker-compose up -d`
 
+_Info_: les données de Vue.js sont gérées par VueX et les requêtes API sont prises en charge par Axios.
+
 ----
 ##### Liste des ports utilisés
 | Service | Port |
@@ -34,5 +36,7 @@ Pour commencer à développer sur l’application, ouvrez votre terminal et exé
 
 ## Documentation API
 https://documenter.getpostman.com/view/3427665/Rztmron1
+
+
 
 
