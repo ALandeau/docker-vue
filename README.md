@@ -9,11 +9,11 @@ Notre application TODO repose sur plusieurs containers Docker :
 
 Nous partons du principe que vous avez déjà `docker` et `docker-compose` installés sur votre machine. Si ce n’est pas le cas, veuillez suivre les instruction de la documentation : https://docs.docker.com/install/.
 
------
 Pour commencer à développer sur l’application, ouvrez votre terminal et exécutez la commande suivante : 
 `docker-compose up -d`
 
-#### Liste des ports utilisés
+----
+##### Liste des ports utilisés
 | Service | Port |
 | --- | :---: |
 | Node API | 3000 |
@@ -21,8 +21,8 @@ Pour commencer à développer sur l’application, ouvrez votre terminal et exé
 | Node VueJS | 8080 |
 | Redis Commander | 8081 |
 
-
-#### Version des services
+----
+##### Version des services
 | Service | Version |
 | --- | :---: |
 | Node API | node:8 |
