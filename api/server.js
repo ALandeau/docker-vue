@@ -28,9 +28,9 @@ app.get('/todos', (req, res) => {
 app.post('/todos/save', (req, res) => {
     client.incr('currentId', function (err, id) {
         client.hmset(`todo:${id}`, {
-            'text': req.body.text,
+            'name': req.body.name,
             'date': req.body.date,
-            'done': req.body.done
+            'completed': req.body.completed
         });
         client.sadd('todos', id)
         allTodos(res);
@@ -39,16 +39,16 @@ app.post('/todos/save', (req, res) => {
 
 app.post('/todos/update', (req, res) => {
     client.hmset(`todo:${req.body.id}`, {
-        'text': req.body.text,
+        'name': req.body.name,
         'date': req.body.date,
-        'done': req.body.done
+        'completed': req.body.completed
     }, (err, reply)=> {
         allTodos(res);
     });
 });
 
 app.get('/todos/delete/:id', (req, res)=>{
-    client.hdel(`todo:${req.params.id}`, ['text', 'date', 'done'], (err, reply) => {
+    client.hdel(`todo:${req.params.id}`, ['name', 'date', 'completed'], (err, reply) => {
         client.srem('todos',req.params.id, (err, reply) => {
             allTodos(res);
         })
@@ -65,12 +65,12 @@ function allTodos(res) {
     let todos = [];
     client.smembers('todos', (err, reply) => {
         reply.map((val, index, arr) => {
-            client.hmget(`todo:${val}`, ['text', 'date', 'done'], (err, todo) => {
+            client.hmget(`todo:${val}`, ['name', 'date', 'completed'], (err, todo) => {
                 todos.push({
                     id: val,
-                    text: todo[0],
+                    name: todo[0],
                     date: todo[1],
-                    done: todo[2],
+                    completed: todo[2],
                 })
                 if (arr.length - 1 == index)
                     res.send(todos)
