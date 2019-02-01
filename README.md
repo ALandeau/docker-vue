@@ -1,4 +1,4 @@
-# Projet Docker 
+# Projet Docker - Simple ToDo application
 
 ## Informations
 Notre application TODO repose sur plusieurs containers Docker : 

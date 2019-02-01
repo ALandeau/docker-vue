@@ -1,9 +1,9 @@
 <template>
   <div class="main">
-    <h1>ToDo APP</h1>
+    <h1>ToDo app</h1>
     <div v-if="isEmpty">
       <el-alert
-          title="There are not activities at this moment"
+          title="Aucune tâche pour le moment."
           type="info"
           :center="true"
           show-icon
@@ -45,7 +45,7 @@
     <div>
       <el-row type="flex" justify="center" class="counterSection">
         <el-col :span="4">
-          Completed :
+          Terminées :
         </el-col>
         <el-col :span="2">
           {{completed}}
@@ -72,11 +72,11 @@
     <div>
       <el-row>
         <el-col :span="3">
-          Activity:
+          Tâche:
         </el-col>
 
         <el-col :span="8">
-          <el-input placeholder="Please input the activity"
+          <el-input placeholder="Nouvelle activité"
                 v-model="activity" size="mini">
           </el-input>
         </el-col>
@@ -184,12 +184,12 @@
 
       setMessageError() {
         if (this.activity === '' && this.date === '') {
-          this.errorMessage = 'The activity && the date are empty';
+          this.errorMessage = 'La tâche est la date sont vides.';
         } else {
           if (this.activity === '') {
-            this.errorMessage = 'The activity is empty';
+            this.errorMessage = 'La tâche est vide.';
           } else {
-            this.errorMessage = 'The date is empty';
+            this.errorMessage = 'La date est vide.';
 
           }
         }
@@ -232,6 +232,4 @@
     background: #f0f9eb;
     text-decoration: line-through;
   }
-
-  
 </style>
