@@ -64,6 +64,8 @@ app.listen(port, () => console.log(`Listening on port :  ${port}!`))
 function allTodos(res) {
     let todos = [];
     client.smembers('todos', (err, reply) => {
+        if(reply.length == 0)
+            res.send([])
         reply.map((val, index, arr) => {
             client.hmget(`todo:${val}`, ['name', 'date', 'completed'], (err, todo) => {
                 todos.push({
