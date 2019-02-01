@@ -29,3 +29,11 @@ services:
     links:
     - redis
 
+  app:
+    build: ./app/
+    ports:
+    - "8080:8080"
+    command: npm run serve
+    volumes:
+    - ./app/:/usr/src/app
+    - /usr/src/app/node_modules
