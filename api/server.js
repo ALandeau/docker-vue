@@ -10,8 +10,18 @@ app.use(bodyParser.urlencoded({
     extended: true
 })); // support encoded bodies
 
+var allowCrossDomain = function(req, res, next) {
+    res.header('Access-Control-Allow-Origin', '*');
+    res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
+    res.header('Access-Control-Allow-Headers', 'Content-Type');
 
-const client = redis.createClient({"host":"redis"});
+    next();
+}
+
+app.use(allowCrossDomain)
+
+
+const client = redis.createClient();
 //Init logic just in case : 
 
 client.get("currentId", function (err, reply) {

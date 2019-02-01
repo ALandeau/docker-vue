@@ -166,7 +166,7 @@
         this.changeActivityState({activity: item})
       },
       tableRowColor({row, rowIndex}) {
-        if (row.completed === true) {
+        if (row.completed == "true") {
           return 'success-row';
         } else {
 
@@ -230,5 +230,8 @@
 
   .el-table .success-row {
     background: #f0f9eb;
+    text-decoration: line-through;
   }
+
+  
 </style>

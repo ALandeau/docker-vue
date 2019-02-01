@@ -4,36 +4,38 @@ import axios from 'axios'
 
 Vue.use(Vuex);
 
+const API_URL = "http://localhost:3000/todos";
+
 export default new Vuex.Store({
   state: {
-    activities: initStore()
+    activities: []
   },
   mutations: {
-    addActivity(state, activity) {
-      state.activities.push(activity);
-    },
-    deleteActivity(state, activity) {
-      state.activities = state.activities.filter((val) => val !== activity);
-    },
-    changeActivityState(state, activity) {
-      state.activities.map((val)=> {
-        if (val.name === activity.name ) {
-          const aux = !val.completed;
-          val.completed = aux;
-        }
-        return val;
-      } )
+    REFRESH_ACTIVITIES(state, activities) {
+      Vue.set(state, 'activities', activities)
     }
   },
   actions: {
-    addActivity({commit}, {activity}) {
-      commit('addActivity', activity)
+    addActivity({commit}, {activity}) {axios
+        .post(`${API_URL}/save`, activity)
+        .then(response => commit('REFRESH_ACTIVITIES', response.data))
     },
-    deleteActivity({commit}, {activity}) {
-      commit('deleteActivity', activity)
+    deleteActivity({commit}, {activity }) {
+      axios
+        .get(`${API_URL}/delete/${activity.id}`)
+        .then(response => commit('REFRESH_ACTIVITIES', response.data));
+
     },
-    changeActivityState({commit}, {activity}){
-      commit('changeActivityState', activity)
+    changeActivityState({commit}, {activity}) {
+      activity.completed =  activity.completed == "true" ? "false" : "true"
+      axios
+        .post(`${API_URL}/update/`, activity)
+        .then(response => commit('REFRESH_ACTIVITIES', response.data))
+    },
+    initStore({commit}) {
+      axios
+        .get(API_URL)
+        .then(response => commit('REFRESH_ACTIVITIES', response.data))
     }
   },
   getters: {
@@ -42,9 +44,3 @@ export default new Vuex.Store({
     }
   }
 })
-
-function initStore(){
-  this.axios
-    .get('')
-    .then(response => response.data)
-}
