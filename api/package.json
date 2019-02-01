@@ -1,0 +1,17 @@
+{
+  "name": "api-todo-docker",
+  "version": "1.0.0",
+  "description": "An dockerized API for a todo app",
+  "main": "server.js",
+  "author": "L'équipe Chibron",
+  "license": "MIT",
+  "private": true,
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "express": "^4.16.4",
+    "redis": "^2.8.0"
+  },
+  "scripts": {
+    "start": "node server.js"
+  }
+}
